@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Rank Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="mb-4">Predict Game Rank</h1>
+      
+      {% if error %}
+      <div class="alert alert-danger">{{ error }}</div>
+      {% endif %}
+      
+      <form method="POST">
+        <!-- Platform Dropdown -->
+        <div class="mb-3">
+          <label for="platform" class="form-label">Platform</label>
+          <select class="form-select" id="platform" name="platform" required>
+            <option value="" disabled selected>Select Platform</option>
+            <option value="Wii">Wii</option>
+            <option value="NES">NES</option>
+            <option value="GB">GB</option>
+            <option value="DS">DS</option>
+            <option value="PS3">PS3</option>
+            <option value="PS2">PS2</option>
+            <option value="SNES">SNES</option>
+            <option value="X360">X360</option>
+            <option value="GBA">GBA</option>
+            <option value="3DS">3DS</option>
+            <option value="PS4">PS4</option>
+            <option value="N64">N64</option>
+            <option value="PC">PC</option>
+            <option value="PSP">PSP</option>
+            <option value="XOne">XOne</option>
+            <option value="GC">GC</option>
+            <option value="WiiU">WiiU</option>
+            <option value="GEN">GEN</option>
+            <option value="PS">PS</option>
+            <option value="2600">2600</option>
+            <option value="XB">XB</option>
+            <option value="DC">DC</option>
+            <option value="SAT">SAT</option>
+            <option value="PSV">PSV</option>
+            <option value="SCD">SCD</option>
+            <option value="GG">GG</option>
+          </select>
+        </div>
+
+        <!-- Genre Dropdown -->
+        <div class="mb-3">
+          <label for="genre" class="form-label">Genre</label>
+          <select class="form-select" id="genre" name="genre" required>
+            <option value="" disabled selected>Select Genre</option>
+            <option value="Sports">Sports</option>
+            <option value="Platform">Platform</option>
+            <option value="Racing">Racing</option>
+            <option value="Role-Playing">Role-Playing</option>
+            <option value="Puzzle">Puzzle</option>
+            <option value="Misc">Misc</option>
+            <option value="Shooter">Shooter</option>
+            <option value="Simulation">Simulation</option>
+            <option value="Action">Action</option>
+            <option value="Fighting">Fighting</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Strategy">Strategy</option>
+          </select>
+        </div>
+
+        <!-- Publisher Dropdown -->
+        <div class="mb-3">
+          <label for="publisher" class="form-label">Publisher</label>
+          <select class="form-select" id="publisher" name="publisher" required>
+            <option value="" disabled selected>Select Publisher</option>
+            <option value="Nintendo">Nintendo</option>
+            <option value="Take-Two Interactive">Take-Two Interactive</option>
+            <option value="Activision">Activision</option>
+            <option value="Ubisoft">Ubisoft</option>
+            <option value="Electronic Arts">Electronic Arts</option>
+            <option value="Sega">Sega</option>
+            <option value="LEGO Media">LEGO Media</option>
+            <option value="Epic Games">Epic Games</option>
+          </select>
+        </div>
+
+        <!-- Sales Inputs -->
+        <div class="mb-3">
+          <label for="na_sales" class="form-label">NA Sales</label>
+          <input type="number" step="0.01" class="form-control" id="na_sales" name="na_sales" placeholder="e.g., 5.0" required>
+        </div>
+        <div class="mb-3">
+          <label for="eu_sales" class="form-label">EU Sales</label>
+          <input type="number" step="0.01" class="form-control" id="eu_sales" name="eu_sales" placeholder="e.g., 3.0" required>
+        </div>
+        <div class="mb-3">
+          <label for="jp_sales" class="form-label">JP Sales</label>
+          <input type="number" step="0.01" class="form-control" id="jp_sales" name="jp_sales" placeholder="e.g., 1.0" required>
+        </div>
+        <div class="mb-3">
+          <label for="other_sales" class="form-label">Other Sales</label>
+          <input type="number" step="0.01" class="form-control" id="other_sales" name="other_sales" placeholder="e.g., 2.0" required>
+        </div>
+        <div class="mb-3">
+          <label for="global_sales" class="form-label">Global Sales</label>
+          <input type="number" step="0.01" class="form-control" id="global_sales" name="global_sales" placeholder="e.g., 11.0" required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Predict Rank</button>
+      </form>
+      
+      {% if prediction is not none %}
+      <div class="mt-4 alert alert-info">
+        Predicted Rank: {{ prediction }}
+      </div>
+      {% endif %}
+    </div>
+    
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
